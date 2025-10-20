@@ -1,0 +1,246 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --text-primary: #000000;
+  --text-secondary: #1f2937;
+  --text-muted: #4b5563;
+  font-family: "Open Sans", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+}
+
+/* Force light mode only - no dark mode */
+* {
+  color-scheme: light !important;
+}
+
+/* Force light mode with high contrast */
+html, body {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* All text elements must be black */
+*, *::before, *::after {
+  color: #000000 !important;
+  background-color: transparent;
+}
+
+/* Exception for profit/loss colors in tables */
+td span[style*="color: #16a34a"] {
+  color: #16a34a !important; /* green-600 */
+}
+
+td span[style*="color: #dc2626"] {
+  color: #dc2626 !important; /* red-600 */
+}
+
+/* User messages will use default black text on light background */
+
+/* Form elements */
+input, textarea, select, button {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border-color: #d1d5db !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border-color: #2563eb !important;
+  outline-color: #2563eb !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Override all Tailwind text colors */
+.text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400,
+.text-slate-500, .text-slate-600, .text-slate-700, .text-slate-800, .text-slate-900,
+.text-gray-100, .text-gray-200, .text-gray-300, .text-gray-400,
+.text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900,
+.text-zinc-100, .text-zinc-200, .text-zinc-300, .text-zinc-400,
+.text-zinc-500, .text-zinc-600, .text-zinc-700, .text-zinc-800, .text-zinc-900 {
+  color: #000000 !important;
+}
+
+/* Message content */
+.whitespace-pre-wrap, .prose, .markdown {
+  color: #000000 !important;
+}
+
+/* Buttons and interactive elements */
+button {
+  color: #000000 !important;
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  transition: all 0.2s ease !important;
+}
+
+button:hover {
+  background-color: #e2e8f0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+button:focus {
+  outline-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Primary action buttons */
+button.bg-gray-800, button.bg-slate-800 {
+  background: #EABD98 !important;
+  background: linear-gradient(135deg, #EABD98, #EFB99E) !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+button.bg-gray-800:hover, button.bg-slate-800:hover {
+  background: linear-gradient(135deg, #EFB99E, #EABD98) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(234, 189, 152, 0.4) !important;
+}
+
+/* Secondary buttons */
+button.bg-emerald-500, button.bg-green-500 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+button.bg-emerald-500:hover, button.bg-green-500:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Links */
+a, a:visited, a:hover, a:focus {
+  color: #1d4ed8 !important;
+}
+
+/* Cards and containers */
+.bg-white, .bg-gray-50, .bg-slate-50 {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.bg-gray-100, .bg-slate-100 {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Table styling improvements */
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+thead th {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  font-weight: 600 !important;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc !important;
+  transform: scale(1.01) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Input field improvements */
+input, textarea, select {
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Ensure no dark backgrounds */
+.bg-black, .bg-gray-900, .bg-slate-900, .bg-zinc-900 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Force proper contrast for all elements */
+div, span, p, h1, h2, h3, h4, h5, h6, li, td, th, label {
+  color: #000000 !important;
+}
+
+/* Accent colors for better visual hierarchy */
+.text-blue-600, .text-blue-700 {
+  color: #2563eb !important;
+}
+
+.text-green-600, .text-emerald-600 {
+  color: #059669 !important;
+}
+
+.text-red-600 {
+  color: #dc2626 !important;
+}
+
+.text-orange-500, .text-amber-500 {
+  color: #f59e0b !important;
+}
+
+/* Status indicators */
+.bg-green-50 {
+  background-color: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+.bg-red-50 {
+  background-color: #fef2f2 !important;
+  border: 1px solid #fecaca !important;
+}
+
+.bg-blue-50 {
+  background-color: #eff6ff !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+.bg-orange-50 {
+  background-color: #fff7ed !important;
+  border: 1px solid #fed7aa !important;
+}
+
+/* Subtle animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

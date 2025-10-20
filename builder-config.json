@@ -1,0 +1,26 @@
+{
+  "appId": "com.tallykaro.desktop",
+  "productName": "TallyKaro Desktop Connector",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/electron/**/*",
+    "out/**/*",
+    "node_modules/**/*",
+    "package.json",
+    "tallykaro-vouchers.tdl",
+    "README.md"
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "tallykaro.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "TallyKaro"
+  }
+}

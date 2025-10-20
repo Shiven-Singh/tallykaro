@@ -1,0 +1,137 @@
+{
+  "name": "tallykaro-desktop-connector",
+  "version": "0.1.0",
+  "description": "TallyKaro Desktop Connector - Connect your Tally data with intelligent AI assistance",
+  "author": "TallyKaro",
+  "main": "dist/electron/main.js",
+  "homepage": "./",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:next\" \"npm run dev:electron\"",
+    "dev:next": "next dev",
+    "dev:electron": "npm run build:electron && cross-env NODE_ENV=development electron .",
+    "build": "npm run build:next && npm run build:electron",
+    "build:next": "next build --no-lint",
+    "build:electron": "tsc -p electron.tsconfig.json",
+    "electron": "electron .",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:installer": "npm run build && electron-builder --config builder-config.json",
+    "start": "electron dist/electron/main.js",
+    "package": "npm run build && node scripts/package.js",
+    "create-exe": "node scripts/build-with-modules.js",
+    "make": "npm run build && npx electron-packager . TallyKaro --platform=win32 --arch=x64 --out=dist-portable --overwrite --no-prune --icon=tallykaro.ico",
+    "build-exe-old": "npm run build && node scripts/create-icon.js && npx electron-packager . TallyKaro-Desktop-Connector --platform=win32 --arch=x64 --out=dist-exe --overwrite --icon=build-assets/icon.png && node scripts/create-final-exe.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.864.0",
+    "@google/genai": "^1.11.0",
+    "@supabase/supabase-js": "^2.55.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@whiskeysockets/baileys": "^6.7.18",
+    "aws-sdk": "^2.1692.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.1",
+    "html2canvas": "^1.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "jspdf": "^3.0.1",
+    "next": "15.3.5",
+    "odbc": "^2.4.9",
+    "openai": "^5.10.2",
+    "pg": "^8.16.3",
+    "puppeteer": "^24.18.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.7",
+    "@types/pg": "^8.15.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/xml2js": "^0.4.14",
+    "concurrently": "^9.2.0",
+    "cross-env": "^10.0.0",
+    "electron": "^37.2.1",
+    "electron-builder": "^26.0.12",
+    "electron-packager": "^17.1.2",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.5",
+    "sharp": "^0.34.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "com.tallykaro.desktop",
+    "productName": "TallyKaro",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "out/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "out/**/*"
+    ],
+    "mac": {
+      "icon": "tallykaro.ico",
+      "target": "dmg"
+    },
+    "win": {
+      "icon": "tallykaro.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "requestedExecutionLevel": "asInvoker",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "linux": {
+      "icon": "tallykaro.ico",
+      "target": "AppImage"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TallyKaro",
+      "uninstallDisplayName": "TallyKaro Desktop Connector",
+      "installerIcon": "tallykaro.ico",
+      "uninstallerIcon": "tallykaro.ico",
+      "installerHeaderIcon": "tallykaro.ico",
+      "artifactName": "TallyKaro-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "menuCategory": "TallyKaro",
+      "displayLanguageSelector": false,
+      "installerLanguages": [
+        "en"
+      ],
+      "language": "1033"
+    }
+  }
+}
